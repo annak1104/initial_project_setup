@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-      run: npm install --immutable
+        run: npm install --immutable
 
       - name: Run ESLint
         run: npm lint
