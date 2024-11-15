@@ -1,25 +1,28 @@
 name: CI
 
 on:
-  workflow_dispatch:
-  pull_request: 
-    type: 
+  workflow_dispatch: {}
+  pull_request:
+    types:
       - opened
       - synchronize
-    push:
-      branches:
-        - main
-        - master
+    branches:
+      - main
+      - master
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
-  lint: 
+  lint:
     name: Lint
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-      run: npm install --immutable
+        run: npm install --immutable
 
       - name: Run ESLint
-        run: npm lint
+        run: npm run lint
