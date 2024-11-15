@@ -6,7 +6,7 @@ on:
     type: 
       - opened
       - synchronize
-    paths:
+    push:
       branches:
         - main
         - master
