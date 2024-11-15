@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request: 
+    type: 
+      - open
+      - synchronize
+    paths:
+      branches:
+        - main
+        - master
+
+jobs:
+  lint: 
+    name: lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+      run: npm install --immutable
+
+      - name: Run Eslint
+        run: npm run lint
