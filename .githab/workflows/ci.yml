@@ -1,25 +1,27 @@
 name: CI
 
 on:
-  workflow_dispatch:
-  pull_request: 
-    type: 
-      - opened
-      - synchronize
-    push:
-      branches:
-        - main
-        - master
+  workflow_dispatch: # Allows manual trigger of the workflow from GitHub UI
+  pull_request:      # Triggers workflow on pull requests
+    branches:        # Only for PRs targeting these branches
+      - main
+      - master
+  push:              # Triggers workflow on push events
+    branches:        # Only for pushes to these branches
+      - main
+      - master
 
 jobs:
-  lint: 
+  lint:
     name: Lint
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Install Dependencies
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
         run: npm install --immutable
 
       - name: Run ESLint
-        run: npm lint
+        run: npm run lint
